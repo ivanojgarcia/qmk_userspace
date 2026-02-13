@@ -22,3 +22,6 @@
 #define SPLIT_LED_STATE_ENABLE
 
 #define ENCODER_RESOLUTION 4
+
+/* Cirque trackpad: higher attenuation = less sensitive (default 4X). */
+#define CIRQUE_PINNACLE_ATTENUATION EXTREG__TRACK_ADCCONFIG__ADC_ATTENUATE_4X

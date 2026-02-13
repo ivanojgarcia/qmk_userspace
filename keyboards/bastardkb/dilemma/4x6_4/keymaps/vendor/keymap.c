@@ -106,7 +106,18 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return state;
 }
 #    endif // DILEMMA_AUTO_SNIPING_ON_LAYER
-#endif     // POINTING_DEVICE_ENABLEE
+
+// Invert scroll direction only (not cursor movement).
+// Scale down cursor speed (higher divisor = slower).
+#define POINTING_DEVICE_SPEED_DIVISOR 2
+
+report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
+    mouse_report.v = -mouse_report.v;
+    mouse_report.x /= POINTING_DEVICE_SPEED_DIVISOR;
+    mouse_report.y /= POINTING_DEVICE_SPEED_DIVISOR;
+    return mouse_report;
+}
+#endif // POINTING_DEVICE_ENABLE
 
 #ifdef RGB_MATRIX_ENABLE
 // Forward-declare this helper function since it is defined in rgb_matrix.c.
